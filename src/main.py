@@ -1,1 +1,4 @@
-print("Ark's Canary v0.0.1")
+from config import VERSION, APP_NAME
+
+print(VERSION)
+print(APP_NAME)

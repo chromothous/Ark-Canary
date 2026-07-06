@@ -8,3 +8,6 @@ Version 0.0.1
 Initial skeleton with src/main.py creation, .gitignore, requirements.txt.
 
 Version 0.0.2
+Created config and hooked it into main and tested it.
+
+Version 0.0.3
