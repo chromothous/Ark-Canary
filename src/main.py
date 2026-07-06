@@ -1,0 +1,1 @@
+print("Ark's Canary v0.0.1")
