@@ -5,4 +5,6 @@ Version 0.0.0
 GitHub initialization and connecting.
 
 Version 0.0.1
+Initial skeleton with src/main.py creation, .gitignore, requirements.txt.
 
+Version 0.0.2
