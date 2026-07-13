@@ -78,7 +78,8 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Detects urgency language",
-            "High"
+            "High",
+            "URGENT"
         )
         print(rule.name)
         print(rule.description)
@@ -98,7 +99,8 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Urgency language detected",
-            "High"
+            "High",
+            "URGENT"
         )
         before = len(document.findings)
         rule.evaluate(document)
@@ -120,7 +122,8 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Urgency language detected",
-            "High"
+            "High",
+            "URGENT"
         )
         rule.evaluate(document)
         assert len(document.findings) == 1
@@ -136,6 +139,33 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.0.7 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        urgency_rule = Rule(
+            "Urgency Rule",
+            "Urgency language detected",
+            "High",
+            "URGENT"
+        )
+        verify_rule = Rule(
+            "Verification Rule",
+            "Verification request detected",
+            "Medium",
+            "VERIFY"
+        )
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        urgency_rule.evaluate(document)
+        verify_rule.evaluate(document)
+        assert len(document.findings) == 2
+        print(green("Version 0.0.8 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.8 failed."))
         failure += 1
 
     if failure > 0:

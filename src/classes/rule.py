@@ -1,20 +1,22 @@
 from classes.finding import Finding
 
 class Rule:
-    def __init__(self, name, description, severity):
+    def __init__(self, name, description, severity, keyword):
         self.name = name
         self.description = description
         self.severity = severity
+        self.keyword = keyword
 
     def evaluate(self, document):
-        keyword = "URGENT"
+        start_index = document.content.upper().find(
+            self.keyword.upper()
+        )
 
-        start_index = document.content.upper().find(keyword)
-        end_index = start_index + len(keyword)
+        if start_index != -1:
+            end_index = start_index + len(self.keyword)
 
-        if "URGENT" in document.content.upper():
             finding = Finding(
-                "URGENT",
+                self.keyword,
                 self.description,
                 self.severity,
                 "Social Engineering",

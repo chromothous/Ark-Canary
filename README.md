@@ -26,3 +26,6 @@ Version 0.0.7
 Added finding position tracking.
 
 Version 0.0.8
+Added keyword based rule detection.
+
+Version 0.0.9
