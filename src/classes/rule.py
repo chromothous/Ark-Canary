@@ -7,12 +7,19 @@ class Rule:
         self.severity = severity
 
     def evaluate(self, document):
+        keyword = "URGENT"
+
+        start_index = document.content.upper().find(keyword)
+        end_index = start_index + len(keyword)
+
         if "URGENT" in document.content.upper():
             finding = Finding(
                 "URGENT",
                 self.description,
                 self.severity,
-                "Social Engineering"
+                "Social Engineering",
+                start_index,
+                end_index
             )
 
             document.add_finding(finding)

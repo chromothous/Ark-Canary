@@ -36,7 +36,9 @@ def full_test():
             "URGENT",
             "Urgency language detected",
             "High",
-            "Social Engineering"
+            "Social Engineering",
+            0,
+            0
         )
         print(finding.text)
         print(finding.reason)
@@ -58,7 +60,9 @@ def full_test():
             "URGENT",
             "Urgency language detected",
             "High",
-            "Social Engineering"
+            "Social Engineering",
+            0,
+            0
         )
         document.add_finding(finding)
         assert len(document.findings) == 1
@@ -106,6 +110,32 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.0.6 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        rule = Rule(
+            "Urgency Rule",
+            "Urgency language detected",
+            "High"
+        )
+        rule.evaluate(document)
+        assert len(document.findings) == 1
+        finding = document.findings[0]
+        assert finding.text == "URGENT"
+        assert finding.reason == "Urgency language detected"
+        assert finding.severity == "High"
+        assert finding.category == "Social Engineering"
+        assert finding.start_index == 0
+        assert finding.end_index == 6
+        print(green("Version 0.0.7 online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.7 failed."))
         failure += 1
 
     if failure > 0:

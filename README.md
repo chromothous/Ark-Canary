@@ -23,3 +23,6 @@ Version 0.0.6
 Started integrating detection of phishing key word. More to come.
 
 Version 0.0.7
+Added finding position tracking.
+
+Version 0.0.8
