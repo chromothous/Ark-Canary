@@ -32,3 +32,6 @@ Version 0.0.9
 Introduced Analyzer for centralized rule execution
 
 Version 0.1.0
+First end to end analysis pipeline.
+
+Version 0.1.1

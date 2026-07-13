@@ -201,6 +201,49 @@ def full_test():
         print(red("Version 0.0.9 failed."))
         failure += 1
 
+    try:
+        tests += 1
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        analyzer = Analyzer()
+        analyzer.add_rule(
+            Rule(
+                "Urgency Rule",
+                "Urgency language detected",
+                "High",
+                "URGENT"
+            )
+        )
+        analyzer.add_rule(
+            Rule(
+                "Verification Rule",
+                "Verification request detected",
+                "Medium",
+                "VERIFY"
+            )
+        )
+        analyzer.analyze(document)
+        assert len(document.findings) == 2
+        assert document.findings[0].text == "URGENT"
+        assert document.findings[0].severity == "High"
+        assert document.findings[1].text == "VERIFY"
+        assert document.findings[1].severity == "Medium"
+        for finding in document.findings:
+            print(f"Text: {finding.text}")
+            print(f"Reason: {finding.reason}")
+            print(f"Severity: {finding.severity}")
+            print(f"Category: {finding.category}")
+            print(f"Start: {finding.start_index}")
+            print(f"End: {finding.end_index}")
+            print()
+        print(green("Version 0.1.0 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.0 failed."))
+        failure += 1
+
     if failure > 0:
         print(red(f"{failure} Failures detected, please fix."))
     else:
