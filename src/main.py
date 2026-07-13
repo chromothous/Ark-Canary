@@ -1,4 +1,6 @@
-from config import VERSION, APP_NAME
+from testing import full_test
 
-print(VERSION)
-print(APP_NAME)
+##################
+full_test()
+##################
+

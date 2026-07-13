@@ -11,3 +11,6 @@ Version 0.0.2
 Created config and hooked it into main and tested it.
 
 Version 0.0.3
+Created the start of finding class and established a testing file to run at the start.
+
+Version 0.0.4
