@@ -17,3 +17,6 @@ Version 0.0.4
 Started construction of document class.
 
 Version 0.0.5
+Started construction of rule class.
+
+Version 0.0.6

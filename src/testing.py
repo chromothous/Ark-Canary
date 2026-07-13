@@ -4,6 +4,8 @@ from classes.finding import Finding
 
 from classes.document import Document
 
+from classes.rule import Rule
+
 def green(text):
     return f"\033[32m{text}\033[0m"
 
@@ -65,6 +67,23 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.0.4 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        rule = Rule(
+            "Urgency Rule",
+            "Detects urgency language",
+            "High"
+        )
+        print(rule.name)
+        print(rule.description)
+        print(rule.severity)
+        success += 1
+        print(green("Version 0.0.5 online."))
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.5 failed."))
         failure += 1
 
     if failure > 0:
