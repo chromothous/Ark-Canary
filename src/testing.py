@@ -86,6 +86,28 @@ def full_test():
         print(red("Version 0.0.5 failed."))
         failure += 1
 
+    try:
+        tests += 1
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        rule = Rule(
+            "Urgency Rule",
+            "Urgency language detected",
+            "High"
+        )
+        before = len(document.findings)
+        rule.evaluate(document)
+        after = len(document.findings)
+        assert before == 0
+        assert after == 1
+        print(green("Version 0.0.6 online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.6 failed."))
+        failure += 1
+
     if failure > 0:
         print(red(f"{failure} Failures detected, please fix."))
     else:

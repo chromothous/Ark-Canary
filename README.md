@@ -20,3 +20,6 @@ Version 0.0.5
 Started construction of rule class.
 
 Version 0.0.6
+Started integrating detection of phishing key word. More to come.
+
+Version 0.0.7
