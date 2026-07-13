@@ -6,6 +6,8 @@ from classes.document import Document
 
 from classes.rule import Rule
 
+from classes.analyzer import Analyzer
+
 def green(text):
     return f"\033[32m{text}\033[0m"
 
@@ -166,6 +168,37 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.0.8 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        analyzer = Analyzer()
+        analyzer.add_rule(
+            Rule(
+                "Urgency Rule",
+                "Urgency language detected",
+                "High",
+                "URGENT"
+            )
+        )
+        analyzer.add_rule(
+            Rule(
+                "Verification Rule",
+                "Verification request detected",
+                "Medium",
+                "VERIFY"
+            )
+        )
+        analyzer.analyze(document)
+        assert len(document.findings) == 2
+        print(green("Version 0.0.9 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.9 failed."))
         failure += 1
 
     if failure > 0:

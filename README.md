@@ -29,3 +29,6 @@ Version 0.0.8
 Added keyword based rule detection.
 
 Version 0.0.9
+Introduced Analyzer for centralized rule execution
+
+Version 0.1.0
