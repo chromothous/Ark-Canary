@@ -2,6 +2,8 @@ from config import VERSION, APP_NAME
 
 from classes.finding import Finding
 
+from classes.document import Document
+
 def green(text):
     return f"\033[32m{text}\033[0m"
 
@@ -43,6 +45,26 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.0.3 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document(
+            "URGENT: Verify your account immediately."
+        )
+        finding = Finding(
+            "URGENT",
+            "Urgency language detected",
+            "High",
+            "Social Engineering"
+        )
+        document.add_finding(finding)
+        assert len(document.findings) == 1
+        print(green("Version 0.0.4 online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.0.4 failed."))
         failure += 1
 
     if failure > 0:

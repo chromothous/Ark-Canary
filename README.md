@@ -14,3 +14,6 @@ Version 0.0.3
 Created the start of finding class and established a testing file to run at the start.
 
 Version 0.0.4
+Started construction of document class.
+
+Version 0.0.5
