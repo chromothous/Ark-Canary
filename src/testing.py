@@ -244,6 +244,32 @@ def full_test():
         print(red("Version 0.1.0 failed."))
         failure += 1
 
+    try:
+        tests += 1
+        document = Document(
+            "URGENT URGENT URGENT"
+        )
+        analyzer = Analyzer()
+        analyzer.add_rule(
+            Rule(
+                "Urgency Rule",
+                "Urgency language detected",
+                "High",
+                "URGENT"
+            )
+        )
+        analyzer.analyze(document)
+        assert len(document.findings) == 3
+        assert document.findings[0].start_index == 0
+        assert document.findings[1].start_index == 7
+        assert document.findings[2].start_index == 14
+        print(green("Version 0.1.1 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.1 failed."))
+        failure += 1
+
     if failure > 0:
         print(red(f"{failure} Failures detected, please fix."))
     else:

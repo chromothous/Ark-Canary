@@ -8,11 +8,17 @@ class Rule:
         self.keyword = keyword
 
     def evaluate(self, document):
-        start_index = document.content.upper().find(
-            self.keyword.upper()
-        )
+        search_start = 0
 
-        if start_index != -1:
+        while True:
+            start_index = document.content.upper().find(
+                self.keyword.upper(),
+                search_start
+            )
+
+            if start_index == -1:
+                break
+
             end_index = start_index + len(self.keyword)
 
             finding = Finding(
@@ -25,3 +31,5 @@ class Rule:
             )
 
             document.add_finding(finding)
+
+            search_start = end_index

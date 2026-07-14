@@ -35,3 +35,6 @@ Version 0.1.0
 First end to end analysis pipeline.
 
 Version 0.1.1
+Add multi-match rule detection
+
+Version 0.1.2
