@@ -50,3 +50,6 @@ Version 0.1.5
 Added document analysis summary support
 
 Version 0.1.6
+Added severity-based finding summaries
+
+Version 0.1.7

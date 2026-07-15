@@ -8,3 +8,10 @@ class Document:
 
     def get_finding_count(self):
         return len(self.findings)
+    
+    def get_severity_count(self,severity):
+        count = 0
+        for finding in self.findings:
+            if finding.severity == severity:
+                count += 1
+        return count
