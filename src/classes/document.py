@@ -5,3 +5,6 @@ class Document:
 
     def add_finding(self, finding):
         self.findings.append(finding)
+
+    def get_finding_count(self):
+        return len(self.findings)

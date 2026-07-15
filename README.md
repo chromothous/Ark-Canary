@@ -47,3 +47,6 @@ Version 0.1.4
 Preserve original document text in findings
 
 Version 0.1.5
+Added document analysis summary support
+
+Version 0.1.6
