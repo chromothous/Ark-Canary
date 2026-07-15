@@ -238,7 +238,7 @@ def full_test():
         assert len(document.findings) == 2
         assert document.findings[0].text == "URGENT"
         assert document.findings[0].severity == "High"
-        assert document.findings[1].text == "VERIFY"
+        assert document.findings[1].text == "Verify"
         assert document.findings[1].severity == "Medium"
         for finding in document.findings:
             print(f"Text: {finding.text}")
@@ -287,17 +287,17 @@ def full_test():
         document = Document("URGENT: Verify your account.")
         analyzer = Analyzer()
         urgency_rule = Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","Social Engineering")
-        verify_rule = Rule("Verification Rule","Verification request detected",MEDIUM,"VERIFY","Credential Theft")
+        verify_rule = Rule("Verification Rule","Verification request detected",MEDIUM,"Verify","Credential Theft")
         analyzer.add_rule(urgency_rule)
         analyzer.add_rule(verify_rule)
         analyzer.analyze(document)
         assert len(document.findings) == 2
         assert document.findings[0].text == "URGENT"
         assert document.findings[0].category == "Social Engineering"
-        assert document.findings[0].severity == "High"
-        assert document.findings[1].text == "VERIFY"
+        assert document.findings[0].severity == HIGH
+        assert document.findings[1].text == "Verify"
         assert document.findings[1].category == "Credential Theft"
-        assert document.findings[1].severity == "Medium"
+        assert document.findings[1].severity == MEDIUM
         for finding in document.findings:
             print(f"Text: {finding.text}")
             print(f"Reason: {finding.reason}")
@@ -331,6 +331,22 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.1.3 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document("Urgent: Verify your account.")
+        analyzer = Analyzer()
+        rule = Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","PHISHING")
+        analyzer.add_rule(rule)
+        analyzer.analyze(document)
+        assert len(document.findings) == 1
+        assert document.findings[0].text == "Urgent"
+        print(green("Version 0.1.4 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.4 failed."))
         failure += 1
 
     if failure > 0:

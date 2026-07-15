@@ -23,7 +23,7 @@ class Rule:
             end_index = start_index + len(self.keyword)
 
             finding = Finding(
-                self.keyword,
+                document.content[start_index:end_index],
                 self.description,
                 self.severity,
                 self.category,
