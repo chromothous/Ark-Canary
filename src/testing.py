@@ -1,5 +1,7 @@
 from config import VERSION, APP_NAME
 
+from constants.severity import LOW, MEDIUM, HIGH
+
 from classes.finding import Finding
 
 from classes.document import Document
@@ -37,7 +39,7 @@ def full_test():
         finding = Finding(
             "URGENT",
             "Urgency language detected",
-            "High",
+            HIGH,
             "Social Engineering",
             0,
             0
@@ -61,7 +63,7 @@ def full_test():
         finding = Finding(
             "URGENT",
             "Urgency language detected",
-            "High",
+            HIGH,
             "Social Engineering",
             0,
             0
@@ -80,7 +82,7 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Detects urgency language",
-            "High",
+            HIGH,
             "URGENT",
             "PHISHING"
         )
@@ -102,7 +104,7 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Urgency language detected",
-            "High",
+            HIGH,
             "URGENT",
             "PHISHING"
         )
@@ -126,7 +128,7 @@ def full_test():
         rule = Rule(
             "Urgency Rule",
             "Urgency language detected",
-            "High",
+            HIGH,
             "URGENT",
             "PHISHING"
         )
@@ -151,14 +153,14 @@ def full_test():
         urgency_rule = Rule(
             "Urgency Rule",
             "Urgency language detected",
-            "High",
+            HIGH,
             "URGENT",
             "PHISHING"
         )
         verify_rule = Rule(
             "Verification Rule",
             "Verification request detected",
-            "Medium",
+            MEDIUM,
             "VERIFY",
             "PHISHING"
         )
@@ -185,7 +187,7 @@ def full_test():
             Rule(
                 "Urgency Rule",
                 "Urgency language detected",
-                "High",
+                HIGH,
                 "URGENT",
                 "PHISHING"
             )
@@ -194,7 +196,7 @@ def full_test():
             Rule(
                 "Verification Rule",
                 "Verification request detected",
-                "Medium",
+                MEDIUM,
                 "VERIFY",
                 "PHISHING"
             )
@@ -218,7 +220,7 @@ def full_test():
             Rule(
                 "Urgency Rule",
                 "Urgency language detected",
-                "High",
+                HIGH,
                 "URGENT",
                 "PHISHING"
             )
@@ -227,7 +229,7 @@ def full_test():
             Rule(
                 "Verification Rule",
                 "Verification request detected",
-                "Medium",
+                MEDIUM,
                 "VERIFY",
                 "PHISHING"
             )
@@ -263,7 +265,7 @@ def full_test():
             Rule(
                 "Urgency Rule",
                 "Urgency language detected",
-                "High",
+                HIGH,
                 "URGENT",
                 "PHISHING"
             )
@@ -284,8 +286,8 @@ def full_test():
         tests += 1
         document = Document("URGENT: Verify your account.")
         analyzer = Analyzer()
-        urgency_rule = Rule("Urgency Rule","Urgency language detected","High","URGENT","Social Engineering")
-        verify_rule = Rule("Verification Rule","Verification request detected","Medium","VERIFY","Credential Theft")
+        urgency_rule = Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","Social Engineering")
+        verify_rule = Rule("Verification Rule","Verification request detected",MEDIUM,"VERIFY","Credential Theft")
         analyzer.add_rule(urgency_rule)
         analyzer.add_rule(verify_rule)
         analyzer.analyze(document)
@@ -308,6 +310,27 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.1.2 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document("URGENT")
+        analyzer = Analyzer()
+        rule = Rule(
+            "Urgency Rule",
+            "Urgency language detected",
+            HIGH,
+            "URGENT",
+            "PHISHING"
+        )
+        analyzer.add_rule(rule)
+        analyzer.analyze(document)
+        assert document.findings[0].severity == HIGH
+        print(green("Version 0.1.3 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.3 failed."))
         failure += 1
 
     if failure > 0:

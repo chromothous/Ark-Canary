@@ -41,3 +41,6 @@ Version 0.1.2
 Added configurable rule categories
 
 Version 0.1.3
+Added severity constants
+
+Version 0.1.4
