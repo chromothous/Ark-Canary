@@ -1,11 +1,12 @@
 from classes.finding import Finding
 
 class Rule:
-    def __init__(self, name, description, severity, keyword):
+    def __init__(self, name, description, severity, keyword, category):
         self.name = name
         self.description = description
         self.severity = severity
         self.keyword = keyword
+        self.category = category
 
     def evaluate(self, document):
         search_start = 0
@@ -25,7 +26,7 @@ class Rule:
                 self.keyword,
                 self.description,
                 self.severity,
-                "Social Engineering",
+                self.category,
                 start_index,
                 end_index
             )

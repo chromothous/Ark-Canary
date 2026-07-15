@@ -38,3 +38,6 @@ Version 0.1.1
 Add multi-match rule detection
 
 Version 0.1.2
+Added configurable rule categories
+
+Version 0.1.3
