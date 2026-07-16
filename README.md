@@ -53,3 +53,6 @@ Version 0.1.6
 Added severity-based finding summaries
 
 Version 0.1.7
+Added risk score calculation
+
+Version 0.1.8
