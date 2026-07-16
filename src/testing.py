@@ -2,6 +2,8 @@ from config import VERSION, APP_NAME
 
 from constants.severity import LOW, MEDIUM, HIGH
 
+from constants.severity_weights import SEVERITY_HIGH_WEIGHT, SEVERITY_MEDIUM_WEIGHT, SEVERITY_LOW_WEIGHT
+
 from classes.finding import Finding
 
 from classes.document import Document
@@ -395,6 +397,23 @@ def full_test():
     except Exception as e:
         print(red(e))
         print(red("Version 0.1.7 failed."))
+        failure += 1
+
+    try:
+        tests += 1
+        document = Document("URGENT VERIFY")
+        analyzer = Analyzer()
+        analyzer.add_rule(Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","PHISHING"))
+        analyzer.add_rule(Rule("Verification Rule","Verification request detected",MEDIUM,"VERIFY","CREDENTIAL_THEFT"))
+        analyzer.analyze(document)
+        assert document.get_category_count("PHISHING") == 1
+        assert document.get_category_count("CREDENTIAL_THEFT") == 1
+        assert document.get_category_count("ATTACHMENTS") == 0
+        print(green("Version 0.1.8 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.8 failed."))
         failure += 1
 
     if failure > 0:

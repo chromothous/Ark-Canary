@@ -28,3 +28,10 @@ class Document:
                 score += 1
 
         return score
+    
+    def get_category_count(self,category):
+        count = 0
+        for finding in self.findings:
+            if finding.category == category:
+                count += 1
+        return count
