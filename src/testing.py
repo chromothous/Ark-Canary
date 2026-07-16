@@ -431,6 +431,27 @@ def full_test():
         print(red("Version 0.1.9 failed."))
         failure += 1
 
+    try:
+        tests += 1
+        document = Document("URGENT")
+        analyzer = Analyzer()
+        analyzer.add_rule(Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","PHISHING"))
+        analyzer.analyze(document)
+        finding = document.findings[0]
+        data = finding.to_dict()
+        assert data["text"] == "URGENT"
+        assert data["reason"] == "Urgency language detected"
+        assert data["severity"] == HIGH
+        assert data["category"] == "PHISHING"
+        assert data["start_index"] == 0
+        assert data["end_index"] == 6
+        print(green("Version 0.1.10 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.10 failed."))
+        failure += 1
+
     if failure > 0:
         print(red(f"{failure} Failures detected, please fix."))
     else:

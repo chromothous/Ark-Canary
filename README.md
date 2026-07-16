@@ -62,3 +62,6 @@ Version 0.1.9
 Added highest severity detection
 
 Version 0.1.10
+Added finding export support
+
+Version 0.1.11
