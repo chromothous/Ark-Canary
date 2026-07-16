@@ -471,6 +471,23 @@ def full_test():
         print("Version 0.1.11 failed.")
         failure += 1
 
+    try:
+        tests += 1
+        document = Document("URGENT")
+        analyzer = Analyzer()
+        analyzer.add_rule(Rule("Urgency Rule","Urgency language detected",HIGH,"URGENT","PHISHING"))
+        analyzer.analyze(document)
+        finding = document.findings[0]
+        data = finding.to_json()
+        assert '"text": "URGENT"' in data
+        assert '"category": "PHISHING"' in data
+        print(green("Version 0.1.12 is online."))
+        success += 1
+    except Exception as e:
+        print(red(e))
+        print(red("Version 0.1.12 failed."))
+        failure += 1
+
     if failure > 0:
         print(red(f"{failure} Failures detected, please fix."))
     else:

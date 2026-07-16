@@ -68,3 +68,6 @@ Version 0.1.11
 Added document export support
 
 Version 0.1.12
+Added finding JSON export support
+
+Version 0.1.13

@@ -1,3 +1,5 @@
+import json
+
 class Finding:
     def __init__(self, text, reason, severity, category, start_index, end_index):
         self.text = text
@@ -16,3 +18,6 @@ class Finding:
             "start_index": self.start_index,
             "end_index": self.end_index
         }
+    
+    def to_json(self):
+        return json.dumps(self.to_dict())
