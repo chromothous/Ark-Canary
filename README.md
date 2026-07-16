@@ -65,3 +65,6 @@ Version 0.1.10
 Added finding export support
 
 Version 0.1.11
+Added document export support
+
+Version 0.1.12

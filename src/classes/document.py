@@ -46,3 +46,11 @@ class Document:
         if self.get_severity_count(LOW) > 0:
             return LOW
         return None
+    
+    def to_dict(self):
+        return {
+            "content": self.content,
+            "finding_count": self.get_finding_count(),
+            "risk_score": self.get_risk_score(),
+            "findings": [finding.to_dict() for finding in self.findings]
+        }
