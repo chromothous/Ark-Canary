@@ -6,3 +6,13 @@ class Finding:
         self.category = category
         self.start_index = start_index
         self.end_index = end_index
+
+    def to_dict(self):
+        return {
+            "text": self.text,
+            "reason": self.reason,
+            "severity": self.severity,
+            "category": self.category,
+            "start_index": self.start_index,
+            "end_index": self.end_index
+        }

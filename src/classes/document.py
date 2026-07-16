@@ -1,3 +1,5 @@
+from constants.severity import HIGH, MEDIUM, LOW
+
 class Document:
     def __init__(self, content):
         self.content = content
@@ -35,3 +37,12 @@ class Document:
             if finding.category == category:
                 count += 1
         return count
+    
+    def get_highest_severity(self):
+        if self.get_severity_count(HIGH) > 0:
+            return HIGH
+        if self.get_severity_count(MEDIUM) > 0:
+            return MEDIUM
+        if self.get_severity_count(LOW) > 0:
+            return LOW
+        return None
